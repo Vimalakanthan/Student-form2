@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #fff;
+    }
+
+    h2 {
+      margin-top: 20px;
+      color: black;
+    }
+
+    form {
+      display: inline-block;
+      text-align: left;
+      border: 1px solid black;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+
+    label, input, select {
+      display: block;
+      margin: 10px 0;
+      width: 200px;
+    }
+
+    input[type="radio"] {
+      display: inline;
+      width: auto;
+    }
+
+    .gender-label {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    #submitBtn {
+      background: green;
+      color: white;
+      padding: 10px;
+      border: none;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    table {
+      margin: 0 auto;
+      border-collapse: collapse;
+      width: 90%;
+    }
+
+    th, td {
+      border: 1px solid black;
+      padding: 10px;
+    }
+
+    .delete-btn {
+      background: red;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h2>STUDENT FORM</h2>
+  <form id="studentForm">
+    <label>Name:</label>
+    <input type="text" id="name" required>
+
+    <label>Age:</label>
+    <input type="number" id="age" required>
+
+    <label>Gender:</label>
+    <span class="gender-label"><input type="radio" name="gender" value="Male" required> Male</span>
+    <span class="gender-label"><input type="radio" name="gender" value="Female"> Female</span>
+
+    <label>Course:</label>
+    <select id="course" required>
+      <option value="">Select</option>
+      <option value="React Js">React Js</option>
+      <option value="Node Js">Node Js</option>
+      <option value="Python">Python</option>
+    </select>
+
+    <label>Email:</label>
+    <input type="email" id="email" required>
+
+    <button type="submit" id="submitBtn">Save</button>
+  </form>
+
+  <h2>STUDENT LIST</h2>
+  <table id="studentTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Course</th>
+        <th>Gender</th>
+        <th>Email</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    const form = document.getElementById('studentForm');
+    const tableBody = document.querySelector('#studentTable tbody');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const age = document.getElementById('age').value;
+      const course = document.getElementById('course').value;
+      const email = document.getElementById('email').value;
+      const gender = form.gender.value;
+
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${name}</td>
+        <td>${age}</td>
+        <td>${course}</td>
+        <td>${gender}</td>
+        <td>${email}</td>
+        <td><button class="delete-btn">Delete</button></td>
+      `;
+
+      row.querySelector('.delete-btn').addEventListener('click', function () {
+        row.remove();
+      });
+
+      tableBody.appendChild(row);
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
