@@ -9,7 +9,7 @@ This is a simple and responsive Student Form web application built using **HTML*
 - ✅ Form validation
 - 💾 Data displayed in a table format
 - 🧹 Reset/Clear functionality
-- 📱 Fully responsive with Tailwind CSS (optional version)
+- 📱 Fully responsive with CSS
 - ✨ Simple and clean UI
 
 ## 🔧 Technologies Used
